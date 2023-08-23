@@ -18,12 +18,14 @@ defaults:
 jobs:
   runtest:
     runs-on: ubuntu-latest
+    environment: deploy
     strategy:
       fail-fast: false
     steps:
     - uses: actions/checkout@v3
       with:
         repository: MDAnalysis/mda-xdrlib
+        ref: 'v0.1.0'
 
     - uses: actions/setup-python@v4
       with:
@@ -33,7 +35,7 @@ jobs:
       uses: IAlibay/pypi-deployment@main
       continue-on-failure: true
       with:
-        token: 'AAAAAAAA'
+        token: ${{ secrets.PYPI_API_TOKEN }}
         wheels: true
         tests: true
         package_name: 'mda_xdrlib'
@@ -43,7 +45,7 @@ jobs:
       uses: IAlibay/pypi-deployment@main
       continue-on-failure: true
       with:
-        token: 'BBBBBBB'
+        token: ${{ secrets.TEST_PYPI_API_TOKEN }}
         test_submission: true
         package_name: 'mda_xdrlib'
         continue_on_failure: true
