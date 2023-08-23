@@ -4,14 +4,22 @@ on:
     branches:
       - main
     pull_request:
+      branches:
+        - main
 
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
-  run-test:
+  runtest:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
 
     - uses: actions/checkout@v3
       with:
