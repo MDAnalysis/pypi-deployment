@@ -10,11 +10,15 @@ inputs:
     required: true
   wheels:
     description: 'If Python wheels also be built alongside the source distribution'
-    default: false
+    default: true
     required: false
   tests:
     description: 'If there should be an attempt to pull down the newly uploaded package and run tests. Note: assumes testing via pytest --pyargs <package_name>'
-    default: false
+    default: true
+    required: false
+  test_deps:
+    descriptions: 'Extra dependencies to install for testing the new package'
+    default: 'pytest'
     required: false
   package_name:
     description: 'Name of package on PyPi, only needed if testing package post-upload'
@@ -24,6 +28,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
     - name: Current Python environment info
       shell: bash
       run: |
@@ -70,5 +78,5 @@ runs:
         fi
         # Install via pipx and run tests
         python -m pip install ${PIP_URLS} ${{ inputs.package_name }}
-        python -m pip install pytest
+        python -m pip install ${{ inputs.test_deps }}
         python -m pytest --pyargs ${{ inputs.package_name }}

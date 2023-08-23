@@ -27,16 +27,10 @@ jobs:
         repository: MDAnalysis/mda-xdrlib
         ref: 'v0.1.0'
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
-
     - name: pypi
       uses: IAlibay/pypi-deployment@main
       with:
         token: ${{ secrets.PYPI_API_TOKEN }}
-        wheels: true
-        tests: true
         package_name: 'mda_xdrlib'
 
   runtestpypi:
@@ -50,13 +44,11 @@ jobs:
         repository: MDAnalysis/mda-xdrlib
         ref: 'v0.1.0'
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
-
     - name: testpypi
       uses: IAlibay/pypi-deployment@main
       with:
         token: ${{ secrets.TEST_PYPI_API_TOKEN }}
         test_submission: true
+        tests: false
+        wheels: false
         package_name: 'mda_xdrlib'
