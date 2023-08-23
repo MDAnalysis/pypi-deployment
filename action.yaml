@@ -1,0 +1,78 @@
+name: pypi-deployment
+description: Package and deploy to PyPi or TestPyPi
+inputs:
+  token:
+    description: 'PyPi or TestPyPi token'
+    required: true
+  test_submission:
+    description: 'True if this should be sent to TestPypi instead of Pypi'
+    default: false
+    required: true
+  wheels:
+    description: 'If Python wheels also be built alongside the source distribution'
+    default: false
+    required: false
+  tests:
+    description: 'If there should be an attempt to pull down the newly uploaded package and run tests. Note: assumes testing via pytest --pyargs <package_name>'
+    default: false
+    required: false
+  package_name: 'Name of package on PyPi, only needed if testing package post-upload'
+    default: ''
+    required: false
+  continue_on_failure: 'Internal testing only: keep going if there is a failure'
+    default: false
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Current Python environment info
+      shell: bash
+      run: |
+        which python
+        python --version
+
+    - name: install_deps
+      shell: bash
+      run: |
+        python -m pip install pipx
+
+    - name: build
+      shell: bash
+      continue-on-error: ${{ inputs.continue_on_failure }}
+      run: |
+        PIPX_OPTS="--sdist"
+        if [[ "${{ inputs.wheels }}" == "true" ]]; then
+          PIPX_OPTS="${PIPX_OPTS} --wheel"
+        fi
+        python -m pipx ${PIPX_OPTS}
+
+    - name: publish_testpypi
+      if: "${{ inputs.test_submission == 'false' }}"
+      continue-on-error: ${{ inputs.continue_on_failure }}
+      shell: bash
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ inputs.token }}
+        repository_url: https://test.pypi.org/legacy/
+
+    - name: publish_pyi
+      if: "${{ inputs.test_submission == 'true' }}"
+      shell: bash
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ inputs.token }}
+
+    - name: run_pytest
+      shell: bash
+      run: |
+        # sleep for 10 seconds to make sure things are refreshing upstream
+        sleep 10
+        # Assign the right URL if tests
+        if [[ "${{ inputs.test_submission }}" == "true" ]]; then
+          PIP_URLS="--index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple"
+        fi
+        # Install via pipx and run tests
+        python -m pip install ${PIP_URLS} ${{ inputs.package_name }}
+        python -m pip install pytest
+        python -m pytest --pyargs ${{ inputs.package_name }}
