@@ -30,7 +30,7 @@ jobs:
         python-version: "3.11"
 
     - name: pypi
-      uses: ./
+      uses: IAlibay/pypi-deployment
       with:
         token: 'AAAAAAAA'
         wheels: true
@@ -39,7 +39,7 @@ jobs:
         continue_on_failure: true
 
     - name: testpypi
-      uses: ./
+      uses: IAlibay/pypi-deployment
       with:
         token: 'BBBBBBB'
         test_submission: true
