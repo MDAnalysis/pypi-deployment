@@ -16,7 +16,8 @@ inputs:
     description: 'If there should be an attempt to pull down the newly uploaded package and run tests. Note: assumes testing via pytest --pyargs <package_name>'
     default: false
     required: false
-  package_name: 'Name of package on PyPi, only needed if testing package post-upload'
+  package_name:
+    description: 'Name of package on PyPi, only needed if testing package post-upload'
     default: 'MDAnalysis'
     required: false
   continue_on_failure: 'Internal testing only: keep going if there is a failure'
