@@ -41,7 +41,6 @@ runs:
 
     - name: build
       shell: bash
-      continue-on-error: ${{ inputs.continue_on_failure }}
       run: |
         PIPX_OPTS="--sdist"
         if [[ "${{ inputs.wheels }}" == "true" ]]; then
@@ -51,7 +50,7 @@ runs:
 
     - name: publish_testpypi
       if: "${{ inputs.test_submission == 'false' }}"
-      continue-on-error: ${{ inputs.continue_on_failure }}
+      continue-on-error: "${{ inputs.continue_on_failure }}"
       shell: bash
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
@@ -60,6 +59,7 @@ runs:
 
     - name: publish_pyi
       if: "${{ inputs.test_submission == 'true' }}"
+      continue-on-error: "${{ inputs.continue_on_failure }}"
       shell: bash
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
