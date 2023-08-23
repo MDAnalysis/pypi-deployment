@@ -15,7 +15,7 @@ The following options can be passed:
 
 ### Example
 
-TODO: add example here
+An example of how to use this workflow can be seen in [this action file](https://github.com/MDAnalysis/mda-xdrlib/blob/main/.github/workflows/deploy.yaml).
 
 ## Note
 This currently only support pure Python packages. Future work will switch this action to using cibuildwheels.
