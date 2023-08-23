@@ -17,7 +17,7 @@ inputs:
     default: false
     required: false
   package_name: 'Name of package on PyPi, only needed if testing package post-upload'
-    default: ''
+    default: 'MDAnalysis'
     required: false
   continue_on_failure: 'Internal testing only: keep going if there is a failure'
     default: false
