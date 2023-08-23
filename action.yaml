@@ -20,10 +20,6 @@ inputs:
     description: 'Name of package on PyPi, only needed if testing package post-upload'
     default: 'MDAnalysis'
     required: false
-  continue_on_failure:
-    description: 'Internal testing only: keep going if there is a failure'
-    default: false
-    required: false
 
 runs:
   using: "composite"
@@ -49,7 +45,6 @@ runs:
         python -m pipx run build ${PIPX_OPTS}
 
     - if: "${{ inputs.test_submission == 'true' }}"
-      continue-on-error: "${{ inputs.continue_on_failure }}"
       id: pypi_upload
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
@@ -58,7 +53,6 @@ runs:
         skip-existing: true
 
     - if: "${{ inputs.test_submission == 'false' }}"
-      continue-on-error: "${{ inputs.continue_on_failure }}"
       id: testpypi_upload
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
