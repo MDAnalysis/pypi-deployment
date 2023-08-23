@@ -48,19 +48,17 @@ runs:
         fi
         python -m pipx ${PIPX_OPTS}
 
-    - name: publish_testpypi
-      if: "${{ inputs.test_submission == 'false' }}"
+    - if: "${{ inputs.test_submission == 'false' }}"
       continue-on-error: "${{ inputs.continue_on_failure }}"
-      shell: bash
+      id: pypi_upload
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         password: ${{ inputs.token }}
         repository_url: https://test.pypi.org/legacy/
 
-    - name: publish_pyi
-      if: "${{ inputs.test_submission == 'true' }}"
+    - if: "${{ inputs.test_submission == 'true' }}"
       continue-on-error: "${{ inputs.continue_on_failure }}"
-      shell: bash
+      id: testpypi_upload
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         password: ${{ inputs.token }}
