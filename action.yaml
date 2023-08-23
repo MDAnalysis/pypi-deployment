@@ -68,6 +68,7 @@ runs:
         skip-existing: true
 
     - name: run_pytest
+      if: "${{ inputs.tests == 'true' }}"
       shell: bash
       run: |
         # sleep for 10 seconds to make sure things are refreshing upstream
