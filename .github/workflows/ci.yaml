@@ -16,7 +16,7 @@ defaults:
     shell: bash
 
 jobs:
-  runtest:
+  runpypi:
     runs-on: ubuntu-latest
     environment: deploy
     strategy:
@@ -40,6 +40,21 @@ jobs:
         package_name: 'mda_xdrlib'
         continue_on_failure: true
 
+  runtestpypi:
+    runs-on: ubuntu-latest
+    environment: deploy
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: MDAnalysis/mda-xdrlib
+        ref: 'v0.1.0'
+
+    - uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
     - name: testpypi
       uses: IAlibay/pypi-deployment@main
       with:
@@ -47,3 +62,4 @@ jobs:
         test_submission: true
         package_name: 'mda_xdrlib'
         continue_on_failure: true
+
