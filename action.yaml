@@ -46,7 +46,7 @@ runs:
         if [[ "${{ inputs.wheels }}" == "true" ]]; then
           PIPX_OPTS="${PIPX_OPTS} --wheel"
         fi
-        python -m pipx ${PIPX_OPTS}
+        python -m pipx run build ${PIPX_OPTS}
 
     - if: "${{ inputs.test_submission == 'false' }}"
       continue-on-error: "${{ inputs.continue_on_failure }}"
