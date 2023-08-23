@@ -48,7 +48,7 @@ runs:
         fi
         python -m pipx run build ${PIPX_OPTS}
 
-    - if: "${{ inputs.test_submission == 'false' }}"
+    - if: "${{ inputs.test_submission == 'true' }}"
       continue-on-error: "${{ inputs.continue_on_failure }}"
       id: pypi_upload
       uses: pypa/gh-action-pypi-publish@release/v1
@@ -57,7 +57,7 @@ runs:
         repository_url: https://test.pypi.org/legacy/
         skip-existing: true
 
-    - if: "${{ inputs.test_submission == 'true' }}"
+    - if: "${{ inputs.test_submission == 'false' }}"
       continue-on-error: "${{ inputs.continue_on_failure }}"
       id: testpypi_upload
       uses: pypa/gh-action-pypi-publish@release/v1
