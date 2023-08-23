@@ -31,6 +31,7 @@ jobs:
 
     - name: pypi
       uses: IAlibay/pypi-deployment@main
+      continue-on-failure: true
       with:
         token: 'AAAAAAAA'
         wheels: true
@@ -40,6 +41,7 @@ jobs:
 
     - name: testpypi
       uses: IAlibay/pypi-deployment@main
+      continue-on-failure: true
       with:
         token: 'BBBBBBB'
         test_submission: true
