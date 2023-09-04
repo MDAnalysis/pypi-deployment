@@ -30,14 +30,8 @@ jobs:
         repository: MDAnalysis/mda-xdrlib
         ref: 'v0.1.0'
 
-    - uses: actions/checkout@v3
-      with:
-        sparse-checkout: |
-          action.yaml
-        sparse-checkout-cone-mode: false
-
     - name: pypi
-      uses: ./
+      uses: IAlibay/pypi-deployment@main
       with:
         token: ${{ secrets.PYPI_API_TOKEN }}
         package_name: 'mda_xdrlib'
@@ -53,14 +47,8 @@ jobs:
         repository: MDAnalysis/mda-xdrlib
         ref: 'v0.1.0'
 
-    - uses: actions/checkout@v3
-      with:
-        sparse-checkout: |
-          action.yaml
-        sparse-checkout-cone-mode: false
-
     - name: testpypi
-      uses: ./
+      uses: IAlibay/pypi-deployment@main
       with:
         token: ${{ secrets.TEST_PYPI_API_TOKEN }}
         test_submission: true
@@ -79,14 +67,8 @@ jobs:
         repository: MDAnalysis/GridDataFormats
         ref: '1.0.1'
 
-    - uses: actions/checkout@v3
-      with:
-        sparse-checkout: |
-          action.yaml
-        sparse-checkout-cone-mode: false
-
     - name: testpypi
-      uses: ./
+      uses: IAlibay/pypi-deployment@main
       with:
         token: ${{ secrets.TEST_PYPI_API_TOKEN }}
         test_submission: true
