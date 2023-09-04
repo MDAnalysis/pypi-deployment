@@ -56,7 +56,7 @@ jobs:
         wheels: false
         package_name: 'mda_xdrlib'
 
-    runtestpypi_griddataformats:
+  runtestpypi_griddataformats:
     runs-on: ubuntu-latest
     environment: deploy
     strategy:
