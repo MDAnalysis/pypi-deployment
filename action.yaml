@@ -21,8 +21,12 @@ inputs:
     default: 'pytest'
     required: false
   package_name:
-    description: 'Name of package on PyPi, only needed if testing package post-upload'
+    description: 'Name of package on PyPi, only needed if testing package post-upload. Used for pip installing'
     default: 'MDAnalysis'
+    required: false
+  module_name:
+    description: 'Name of package directory, only needed if testing package post-upload. Used for pytest pyargs'
+    default: null
     required: false
 
 runs:
@@ -80,4 +84,10 @@ runs:
         # Install via pipx and run tests
         python -m pip install ${PIP_URLS} ${{ inputs.package_name }}
         python -m pip install ${{ inputs.test_deps }}
-        python -m pytest --pyargs ${{ inputs.package_name }}
+        
+        if [[ "${{ inputs.module_name }}" == "null" ]]; then
+          PACKAGEDIR="${{ inputs.package_name }}"
+        else
+          PACKAGEDIR="${{ inputs.module_name }}"
+        fi
+        python -m pytest --pyargs $PACKAGEDIR

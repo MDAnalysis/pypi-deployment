@@ -31,7 +31,7 @@ jobs:
         ref: 'v0.1.0'
 
     - name: pypi
-      uses: IAlibay/pypi-deployment@main
+      uses: MDAnalysis/pypi-deployment@main
       with:
         token: ${{ secrets.PYPI_API_TOKEN }}
         package_name: 'mda_xdrlib'
@@ -48,7 +48,7 @@ jobs:
         ref: 'v0.1.0'
 
     - name: testpypi
-      uses: IAlibay/pypi-deployment@main
+      uses: MDAnalysis/pypi-deployment@main
       with:
         token: ${{ secrets.TEST_PYPI_API_TOKEN }}
         test_submission: true
