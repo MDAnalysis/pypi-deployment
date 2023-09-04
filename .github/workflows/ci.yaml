@@ -70,7 +70,7 @@ jobs:
     - name: testpypi
       uses: IAlibay/pypi-deployment@main
       with:
-        token: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        token: ${{ secrets.TEST_PYPI_API_TOKEN_GDF }}
         test_submission: true
         tests: true
         wheels: false
