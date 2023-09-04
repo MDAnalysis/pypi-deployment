@@ -2,30 +2,30 @@ name: pypi-deployment
 description: Package and deploy to PyPi or TestPyPi
 inputs:
   token:
-    description: 'PyPi or TestPyPi token'
+    description: 'PyPi or TestPyPi token.'
     required: true
   test_submission:
-    description: 'True if this should be sent to TestPypi instead of Pypi'
+    description: 'True if this should be sent to TestPypi instead of PyPi.'
     default: false
     required: true
   wheels:
-    description: 'If Python wheels also be built alongside the source distribution'
+    description: 'If Python wheels also be built alongside the source distribution.'
     default: true
     required: false
   tests:
-    description: 'If there should be an attempt to pull down the newly uploaded package and run tests. Note: assumes testing via pytest --pyargs <package_name>'
+    description: 'If there should be an attempt to pull down the newly uploaded package and run tests. Note: assumes testing via pytest --pyargs <package_name>.'
     default: true
     required: false
   test_deps:
-    descriptions: 'Extra dependencies to install for testing the new package'
+    descriptions: 'Extra dependencies to install for testing the new package.'
     default: 'pytest'
     required: false
   package_name:
-    description: 'Name of package on PyPi, only needed if testing package post-upload. Used for pip installing'
+    description: 'Name of package on PyPi, only needed if testing package post-upload. Used for pip installing.'
     default: 'MDAnalysis'
     required: false
   module_name:
-    description: 'Name of package directory, only needed if testing package post-upload. Used for pytest pyargs. If unset will use `package_name`'
+    description: 'Name of package directory, only needed if testing package post-upload. Used for pytest pyargs. If unset will use `package_name`.'
     default: null
     required: false
 
