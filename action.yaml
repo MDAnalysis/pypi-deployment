@@ -25,7 +25,7 @@ inputs:
     default: 'MDAnalysis'
     required: false
   module_name:
-    description: 'Name of package directory, only needed if testing package post-upload. Used for pytest pyargs'
+    description: 'Name of package directory, only needed if testing package post-upload. Used for pytest pyargs. If unset will use `package_name`'
     default: null
     required: false
 
