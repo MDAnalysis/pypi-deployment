@@ -56,23 +56,23 @@ jobs:
         wheels: false
         package_name: 'mda_xdrlib'
 
-  runtestpypi_griddataformats:
-    runs-on: ubuntu-latest
-    environment: deploy
-    strategy:
-      fail-fast: false
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        repository: MDAnalysis/GridDataFormats
-        ref: '1.0.1'
+#  runtestpypi_griddataformats:
+#    runs-on: ubuntu-latest
+#    environment: deploy
+#    strategy:
+#      fail-fast: false
+#    steps:
+#    - uses: actions/checkout@v3
+#      with:
+#        repository: MDAnalysis/GridDataFormats
+#        ref: '1.0.1'
 
-    - name: testpypi
-      uses: MDAnalysis/pypi-deployment@main
-      with:
-        token: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        test_submission: true
-        tests: true
-        wheels: false
-        package_name: 'griddataformats'
-        module_name: 'gridData'
+#    - name: testpypi
+#      uses: MDAnalysis/pypi-deployment@main
+#      with:
+#        token: ${{ secrets.TEST_PYPI_API_TOKEN }}
+#        test_submission: true
+#        tests: true
+#        wheels: false
+#        package_name: 'griddataformats'
+#        module_name: 'gridData'
