@@ -7,12 +7,11 @@ Please see [action.yaml()] for all details.
 
 The following options can be passed:
 
-1. `token` (required): The relevant PyPi or TestPyPi upload token for the package.
-2. `test_submission`: Bool, if true the package will be uploaded to TestPyPi instead of PyPi (default: false)
-3. `wheels`: Bool, if true wheels will be created and uploaded (default: true)
-4. `tests`: Bool, if true there will be an attempt to pull down the newly uploaded package and run tests. Please note this assumes testing via `pytest --pyargs inputs.package_name` (default: true)
-5. `package_name`: Name of package on PyPi, only needed if testing package post-upload. Used for pip installing (default: 'MDAnalysis')
-6. `module_name`: Name of package directory, only needed if testing package post-upload. Used for pytest pyargs. If unset will use `package_name` (default: null)
+1. `test_submission`: Bool, if true the package will be uploaded to TestPyPi instead of PyPi (default: false)
+2. `wheels`: Bool, if true wheels will be created and uploaded (default: true)
+3. `tests`: Bool, if true there will be an attempt to pull down the newly uploaded package and run tests. Please note this assumes testing via `pytest --pyargs inputs.package_name` (default: true)
+4. `package_name`: Name of package on PyPi, only needed if testing package post-upload. Used for pip installing (default: 'MDAnalysis')
+5. `module_name`: Name of package directory, only needed if testing package post-upload. Used for pytest pyargs. If unset will use `package_name` (default: null)
 
 ### Example
 
