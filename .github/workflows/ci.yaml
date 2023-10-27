@@ -33,7 +33,6 @@ jobs:
     - name: pypi
       uses: MDAnalysis/pypi-deployment@main
       with:
-        token: ${{ secrets.PYPI_API_TOKEN }}
         package_name: 'mda_xdrlib'
 
   runtestpypi:
@@ -50,7 +49,6 @@ jobs:
     - name: testpypi
       uses: MDAnalysis/pypi-deployment@main
       with:
-        token: ${{ secrets.TEST_PYPI_API_TOKEN }}
         test_submission: true
         tests: true
         wheels: false
@@ -70,7 +68,6 @@ jobs:
     - name: testpypi
       uses: MDAnalysis/pypi-deployment@main
       with:
-        token: ${{ secrets.TEST_PYPI_API_TOKEN_GDF }}
         test_submission: true
         tests: true
         wheels: false
