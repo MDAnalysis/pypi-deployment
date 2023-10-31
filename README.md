@@ -12,6 +12,7 @@ The following options can be passed:
 3. `tests`: Bool, if true there will be an attempt to pull down the newly uploaded package and run tests. Please note this assumes testing via `pytest --pyargs inputs.package_name` (default: true)
 4. `package_name`: Name of package on PyPi, only needed if testing package post-upload. Used for pip installing (default: 'MDAnalysis')
 5. `module_name`: Name of package directory, only needed if testing package post-upload. Used for pytest pyargs. If unset will use `package_name` (default: null)
+6. `test_deps:` : Extra dependencies to install for testing the new package. (default `pytest`).
 
 ### Example
 
