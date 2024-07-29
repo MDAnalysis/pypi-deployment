@@ -3,7 +3,7 @@ A reusable github action to package, deploy and and check code to PyPi & TestPyP
 
 ## Basic usage
 
-Please see [action.yaml()] for all details.
+Please see [action.yaml](action.yaml) for all details.
 
 The following options can be passed:
 
