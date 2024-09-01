@@ -29,7 +29,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
       with:
         python-version: "3.11"
 
@@ -57,7 +57,7 @@ runs:
       id: pypi_upload
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        repository_url: https://test.pypi.org/legacy/
+        repository-url: https://test.pypi.org/legacy/
         skip-existing: true
 
     - if: "${{ inputs.test_submission == 'false' }}"
