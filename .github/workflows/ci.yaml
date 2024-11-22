@@ -55,7 +55,7 @@ jobs:
         ref: 'v0.1.0'
 
     - name: testpypi
-      uses: MDAnalysis/pypi-deployment@main
+      uses: mdanalysis/pypi-deployment@main
       with:
         test_submission: true
         tests: true
@@ -74,11 +74,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        repository: MDAnalysis/GridDataFormats
+        repository: mdanalysis/GridDataFormats
         ref: '1.0.1'
 
     - name: testpypi
-      uses: MDAnalysis/pypi-deployment@main
+      uses: mdanalysis/pypi-deployment@main
       with:
         test_submission: true
         tests: true
