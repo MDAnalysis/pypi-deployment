@@ -35,7 +35,7 @@ jobs:
         ref: 'v0.1.0'
 
     - name: pypi
-      uses: MDAnalysis/pypi-deployment@main
+      uses: mdanalysis/pypi-deployment@main
       with:
         package_name: 'mda_xdrlib'
 
